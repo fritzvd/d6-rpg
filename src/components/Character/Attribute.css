@@ -1,0 +1,15 @@
+.Attribute button {
+  padding: 0.2em;
+  box-shadow: 0;
+  border: 1px black solid;
+  margin-left: 0.2em;
+}
+
+.Attribute button:hover {
+  padding: 0.2em;
+  box-shadow: 0 0 1px;
+}
+
+.right-float {
+  float: right;
+}

@@ -2,17 +2,14 @@ import React from 'react'
 import OverviewContainer from '../Overview/OverviewContainer'
 import AddCharacter from '../AddCharacter/AddCharacter'
 import './App.css'
-import Grid from 'material-ui/Grid';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import 'tachyons'
 
 const App = () => {
   return (
-    <Grid>
-      <div className="App">
+      <div className="fl w-100 pa2 App">
         <OverviewContainer />
         <AddCharacter />
       </div>
-    </Grid>
   )
 }
 

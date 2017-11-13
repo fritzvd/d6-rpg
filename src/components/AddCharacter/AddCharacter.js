@@ -1,76 +1,49 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import Button from 'material-ui/Button';
 
-import { addCharacter } from '../../actions'
+import { addCharacter, newCharacter} from '../../actions'
 import CharacterForm from './CharacterForm'
+import './AddCharacter.css'
 
-let id = 1;
-class AddCharacter extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      character: {
-        name: '',
-        age: Math.floor(Math.random() * 50),
-        description: '',
-        skillIds: [],
-        attributeIds: [1, 2, 3, 4],
-        attributes: [
-          {
-            id: 1,
-            name: 'prowess',
-            dice: 3,
-            skills: [],
-          },
-          { 
-            id: 2,
-            name: 'acumen',
-            dice: 2,
-            skills: []
-          },
-          { 
-            id: 3,
-            name: 'finesse',
-            dice: 2,
-            skills: []
-          },
-          { 
-            id: 4,
-            name: 'bearing',
-            dice: 4,
-            skills: []
-          }
-        ]
-      }
-    }
-  }
+// import createCharacterTemplate from './characterTemplate'
 
-  render () {
+import lotr from '../../data/lotr'
+import NameGenerator from './name-generator'
+
+let id = 0;
+let AddCharacter = ({dispatch, character}) => {
     return (
-      <div>
+      <div className="AddCharacter">
         <form
           onSubmit={e => {
             e.preventDefault()
           
-            this.props.dispatch(addCharacter({
-              ...this.state.character,
+            dispatch(addCharacter({
+              ...character,
               id: id++
             }))
+            dispatch(newCharacter(id))
           }}
         >
-          <CharacterForm character={this.state.character} onUpdate={
-            (c) => { this.setState({characer: c})}
-          } />
-          <button color="primary">
+          <CharacterForm dispatch={dispatch} character={character} />
+          <button>
            Add Character
           </button>
         </form>
       </div>
     )
+}
+
+const getActiveCharacter = (activeCharacter) => {
+  return activeCharacter
+}
+
+const mapStateToProps = (state) => {
+  return {
+    character: getActiveCharacter(state.activeCharacter)
   }
 }
 
-AddCharacter = connect()(AddCharacter)
+AddCharacter = connect(mapStateToProps)(AddCharacter)
 
 export default AddCharacter

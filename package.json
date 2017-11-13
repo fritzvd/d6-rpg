@@ -17,6 +17,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "redux-devtools": "^3.4.0"
+    "redux-devtools": "^3.4.0",
+    "tachyons": "^4.9.0"
   }
 }

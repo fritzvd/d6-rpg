@@ -1,0 +1,14 @@
+.Character {
+  background: white;
+  border: 1px solid lightgrey;
+  padding: 1em;
+  margin: 1em;
+  position: relative;
+}
+
+.right-top {
+  position: absolute;
+  padding: 1em;
+  top: 0;
+  right: 0;
+}

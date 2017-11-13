@@ -1,18 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Attribute from './Attribute'
 
-// import {Card, CardHeader, CardText} from 'material-ui/Card';
+import { removeCharacter } from '../../actions'
+import Attribute from './Attribute'
+import './Character.css'
 
 const Character = ({dispatch, character}) => {
   return  (
-  <div>
+  <div className="Character mw9">
     <h1>{character.name} - {character.age}</h1>
+    <span className="right-top" onClick={()=> dispatch(removeCharacter(character.id))}>x</span>
     <span>{character.description}</span>
-    {character.attributes.map((attribute) => {
-      return <Attribute key={attribute.id} attribute={attribute}/>
-    })}
+    <span>{character.creationPoints}</span>
+    <div className="mw9">
+      {character.attributes.map((attribute) => {
+        return <Attribute key={attribute.id} attribute={attribute} dispatch={dispatch} characterId={character.id}/>
+      })}
+    </div>
+    <button></button>
   </div>
-)
+  )
 }
-export default connect()(Character)
+
+const mapStateToProps = state => {
+  return state
+}
+export default connect(mapStateToProps)(Character)
