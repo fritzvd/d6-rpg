@@ -1,13 +1,14 @@
 {
+  "fantasy": {
+    "attributes": ["agility", "coordination", "physique", "intellect", "acumen", "charisma", "extranormal"]
+  },
   "generic": {
     "attributes": ["prowess", "acumen", "bearing", "finesse"]
   },
   "minisix": {
     "attributes": ["might", "agility", "wit", "charm"]
   },
-  "fantasy": {
-    "attributes": ["agility", "coordination", "physique", "intellect", "acumen", "charisma", "extranormal"]
-  },
+
   "starwars": {
     "attributes": ["dexterity", "knowledge", "mechanical", "perception", "strength", "technical"]
   }

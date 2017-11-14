@@ -5,6 +5,11 @@ import decrementAttribute from './decrementAttribute'
 
 import createCharacterTemplate from '../actions/characterTemplate'
 
+import NameGenerator from '../name-generator'
+import lotr from '../data/lotr'
+
+const nameGen = new NameGenerator(2, lotr)
+
 const characters = (state = [], action) => {
   let newState = [...state]
   switch(action.type) {
@@ -16,6 +21,16 @@ const characters = (state = [], action) => {
       return incrementAttribute(state, action)
     case 'DECREMENT_ATTRIBUTE':
       return decrementAttribute(state, action)
+    case 'BUY_ATTRIBUTE_DIE':
+      return state.map((character) => {
+        if (action.id === character.id && character.dicePool < 3 * 18) {
+          character = {...character, 
+            creationPoints: character.creationPoints - 4,
+            dicePool: character.dicePool + 3
+          }
+        } 
+        return character
+      })
     case 'CHANGE_NAME':
       return state.map((character) => 
       (action.characterId === character.id) ? {...character, name: action.name} : character)
@@ -23,8 +38,21 @@ const characters = (state = [], action) => {
       return state
   }
 }
+const gameType = (state='fantasy', action) => {
+  switch (action.type) {
+  case 'CHANGE_GAME_TYPE':
+    return action.name
+  default:
+    return state
+  }
+}
 
-const activeCharacter = (state = createCharacterTemplate('fantasy'), action) => {
+const defaultCharacter = {
+  ...createCharacterTemplate('fantasy'),
+  name: nameGen.newName()
+}
+
+const activeCharacter = (state = defaultCharacter, action) => {
   switch(action.type) {
     case 'CHANGE_NAME':
       return {...state, name: action.name}
@@ -33,8 +61,9 @@ const activeCharacter = (state = createCharacterTemplate('fantasy'), action) => 
     case 'CHANGE_DESCRIPTION':
       return {...state, description: action.description}
     case 'NEW_CHARACTER':
-
-      return action.character
+      return {...action.character, name: nameGen.newName()}
+    case 'CHANGE_GAME_TYPE':
+      return createCharacterTemplate(action.name)
     default:
       return state
   }
@@ -42,7 +71,8 @@ const activeCharacter = (state = createCharacterTemplate('fantasy'), action) => 
 
 const d6App = combineReducers({
   activeCharacter,
-  characters
+  characters,
+  gameType
 })
 
 export default d6App

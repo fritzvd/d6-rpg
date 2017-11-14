@@ -1,21 +1,21 @@
 import React from 'react'
-import { incrementAttribute, decrementAttribute } from '../../actions' 
+import { incrementAttribute, decrementAttribute } from '../../actions'
+import Skill from './Skill'
 import './Attribute.css'
 
-const calculateDice = (dice) => {
-  const numDice = Math.floor(dice / 3)
-  const pips = dice % 3
-  return `${numDice}D${(pips === 0) ? '' : `+${pips}`  }`
-}
+import calculateDice from '../../helpers/calculateDice'
 
 const Attribute = ({dispatch, attribute, characterId}) => {
   return (
     <div className="fl w-50 pa2 Attribute">
-      <strong>{attribute.name} - {calculateDice(attribute.dicePoints)} </strong>
-      <div className="right-float">
-        <button onClick={() => dispatch(decrementAttribute(attribute.id, characterId))}>-</button>
-        <button onClick={() => dispatch(incrementAttribute(attribute.id, characterId))}>+</button>
+      <div className="mb4">
+        <strong>{attribute.name} - {calculateDice(attribute.dicePoints)} </strong>
+        <div className="right-float">
+          <button onClick={() => dispatch(decrementAttribute(attribute.id, characterId))}>-</button>
+          <button onClick={() => dispatch(incrementAttribute(attribute.id, characterId))}>+</button>
+        </div>
       </div>
+      {attribute.skills.map((skill, key) => <Skill dispatch={dispatch} key={key} skill={skill} />)}
     </div>
   )
 }

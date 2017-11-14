@@ -2,7 +2,7 @@
   "id": 0,
   "name": "",
   "dicePoints": 0,
-  "skills": [],
-  "minimumDicePoints": 4,
-  "maximumDicePoints": 20
+  "skills": ["brawling"],
+  "minimumDicePoints": 3,
+  "maximumDicePoints": 15
 }

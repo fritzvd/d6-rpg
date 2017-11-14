@@ -30,18 +30,26 @@ export const decrementAttribute = (attributeId, characterId) => {
   }
 }
 
-export const newCharacter = (id) => {
+export const newCharacter = (id, type) => {
   return {
     type: 'NEW_CHARACTER',
-    character: {...createCharacterTemplate('generic'), id}
+    character: {...createCharacterTemplate(type), id}
   }
 }
 
-export const changeName = (name, characterId) => {
+export const changeName = (name, id) => {
   return {
     type: 'CHANGE_NAME',
     name,
-    characterId
+    id
+  }
+}
+
+export const changeGameType = (name, id) => {
+  return {
+    type: 'CHANGE_GAME_TYPE',
+    name,
+    id
   }
 }
 
@@ -58,5 +66,12 @@ export const changeDescription = (description, characterId) => {
     type: 'CHANGE_DESCRIPTION',
     description,
     characterId
+  }
+}
+
+export const buyAttributeDie = (id) => {
+  return {
+    type: 'BUY_ATTRIBUTE_DIE',
+    id
   }
 }

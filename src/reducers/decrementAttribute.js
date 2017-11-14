@@ -14,7 +14,7 @@ const decrementAttribute = (newState, action) => {
       return newAttribute
     })
     if (changed) {
-      return {...character, creationPoints: character.creationPoints + 1}
+      return {...character, dicePool: character.dicePool + 1}
     } else {
       return character
     }

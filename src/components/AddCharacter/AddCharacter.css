@@ -3,3 +3,11 @@
   align-items: center;
   justify-content: space-around
 }
+
+select {
+  width: 100%;
+}
+
+button {
+  margin: 1em;
+}

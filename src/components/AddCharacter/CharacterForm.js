@@ -21,7 +21,7 @@ const CharacterForm = ({dispatch, character}) => {
       label="Age"
       value={character.age}
       />
-      <input
+      <textarea
       onChange={event => {
         let description = event.target.value
         dispatch(changeDescription(description, character.id))

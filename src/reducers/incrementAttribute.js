@@ -5,7 +5,7 @@ const incrementAttribute = (newState, action) => {
       let newAttribute = {...attribute}
       if (
         attribute.id === action.attributeId &&
-        character.creationPoints > 0 &&
+        character.dicePool > 0 &&
         attribute.maximumDicePoints > attribute.dicePoints
       ) {
         changed = true
@@ -14,7 +14,7 @@ const incrementAttribute = (newState, action) => {
       return newAttribute
     })
     if (changed) {
-      return {...character, creationPoints: character.creationPoints - 1}
+      return {...character, dicePool: character.dicePool - 1}
     } else {
       return character
     }
