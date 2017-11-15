@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import incrementAttribute from './incrementAttribute'
 import decrementAttribute from './decrementAttribute'
+import addSkill from './addSkill'
 
 import createCharacterTemplate from '../actions/characterTemplate'
 
@@ -31,6 +32,8 @@ const characters = (state = [], action) => {
         } 
         return character
       })
+    case 'ADD_SKILL':
+      return addSkill(state, action)
     case 'CHANGE_NAME':
       return state.map((character) => 
       (action.characterId === character.id) ? {...character, name: action.name} : character)

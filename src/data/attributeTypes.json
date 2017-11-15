@@ -1,6 +1,58 @@
 {
   "fantasy": {
-    "attributes": ["agility", "coordination", "physique", "intellect", "acumen", "charisma", "extranormal"]
+    "attributes": ["agility", "coordination", "physique", "intellect", "acumen", "charisma", "extranormal"],
+    "skills": [
+      {
+        "attribute": "agility",
+        "name": "acrobatics",
+        "description": "Performing feats of gymnastics, extraordinary balance, and dance (and related performance arts), as well as breaking falls. useful for running obstacle courses or doing courtly promenade."
+      },
+      {
+        "attribute": "agility",
+        "name": "fighting",
+        "description": "Competence in unarmed combat."
+      },
+      {
+        "attribute": "agility",
+        "name": "climbing",
+        "description": "Scaling various surfaces."
+      },
+      {
+        "attribute": "agility",
+        "name": "contortion",
+        "description": "Escaping from otherwise secure physical bonds by twisting, writhing, and contorting the body. "
+      },
+      {
+        "attribute": "agility",
+        "name": "dodge",
+        "description": "Slipping out of danger's way, whether avoiding an attack or a sprung booby trap."
+      },
+      {
+        "attribute": "agility",
+        "name": "flying",
+        "description": "Maneuvering under one's own power (such as with wings)."
+      },
+      {
+        "attribute": "agility",
+        "name": "jumping",
+        "description": "Leaping over obstacles."
+      },
+      {
+        "attribute": "agility",
+        "name": "melee combat",
+        "description": " Wielding hand-to-hand weapons."
+      },
+      {
+        "attribute": "agility",
+        "name": "riding",
+        "description": "Controlling and riding domesticated mounts. "
+      },
+      {
+        "attribute": "agility",
+        "name": "stealth",
+        "description": "Moving silently and avoiding detection, whether through shadows or crowds."
+      }
+    ]
   },
   "generic": {
     "attributes": ["prowess", "acumen", "bearing", "finesse"]

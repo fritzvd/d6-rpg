@@ -75,3 +75,12 @@ export const buyAttributeDie = (id) => {
     id
   }
 }
+
+export const addSkill = (characterId, attributeId, skillNames) => {
+  return {
+    type: 'ADD_SKILL',
+    characterId,
+    attributeId,
+    skillNames
+  }
+}

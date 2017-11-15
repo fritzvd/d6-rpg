@@ -22,14 +22,18 @@ let AddCharacter = ({dispatch, character, gameTypes, gameType}) => {
           }}
           className="cf ph2-ns"
         >
-          <CharacterForm dispatch={dispatch} character={character} className="fl w-100 w-50-ns pa2"/>
-          <button class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{}}>Create Character</button>
-          <select onChange={(e)=> dispatch(changeGameType(e.target.value))} defaultValue={gameTypes[0]} className="right">
-            {gameTypes.map((game, i) => {
-              
-              return <option key={i} value={game} selected>{game}</option>
-            })}
+          <label htmlFor="gameType" className="f6 b db mb2">Choose game type for character <span className="normal black-60"></span></label>
+          <select name="gameType" onChange={(e)=> dispatch(changeGameType(e.target.value))} defaultValue={gameTypes[0]}
+          className="input-reset ba b--black-20 pa2 mb2 db w-100"
+            >
+              {gameTypes.map((game, i) => {
+                
+                return <option key={i} value={game}>{game}</option>
+              })}
           </select>
+          <CharacterForm dispatch={dispatch} character={character} className="fl w-100 w-50-ns pa2"/>
+          <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" onClick={()=>{}} value="Create Character" type="submit" />
+          
         </form>
       </div>
     )
