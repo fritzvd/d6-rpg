@@ -2,7 +2,7 @@
   "name": "d6-rpg",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http:/fritzvd.com/d6-rpg/",
+  "homepage": "/d6-rpg/",
   "dependencies": {
     "material-ui": "^0.19.4",
     "react": "^16.0.0",
