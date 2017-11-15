@@ -84,3 +84,19 @@ export const addSkill = (characterId, attributeId, skillNames) => {
     skillNames
   }
 }
+
+export const decrementSkill = (skillId, characterId) => {
+  return {
+    type: 'DECREMENT_SKILL',
+    skillId,
+    characterId
+  }
+}
+
+export const incrementSkill = (skillId, characterId) => {
+  return {
+    type: 'DECREMENT_SKILL',
+    skillId,
+    characterId
+  }
+}

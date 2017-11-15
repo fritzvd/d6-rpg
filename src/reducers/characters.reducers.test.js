@@ -1,7 +1,15 @@
-import d6App from './index'
-import { createStore } from 'redux'
+import { characters, activeCharacter } from './index'
 
-it('should return an emptlist at decks', () => {
-  let store = createStore(d6-rpgApp)
-  expect(store.getState().characters).toEqual([])
+it('should return an empty list of characters', () => {
+  expect(characters([], {})).toEqual([])
+})
+
+it('should return a new character', () => {
+  expect(characters([], {
+    type: 'ADD_CHARACTER',
+    character: activeCharacter({}, {
+        type: 'CHANGE_GAME_TYPE',
+        name: 'fantasy'
+      })
+    })[0]).toBeTruthy()
 })

@@ -11,8 +11,7 @@ import lotr from '../data/lotr'
 
 const nameGen = new NameGenerator(2, lotr)
 
-const characters = (state = [], action) => {
-  let newState = [...state]
+export const characters = (state = [], action) => {
   switch(action.type) {
     case 'ADD_CHARACTER':
       return [...state, {...action.character}]
@@ -55,7 +54,7 @@ const defaultCharacter = {
   name: nameGen.newName()
 }
 
-const activeCharacter = (state = defaultCharacter, action) => {
+export const activeCharacter = (state = defaultCharacter, action) => {
   switch(action.type) {
     case 'CHANGE_NAME':
       return {...state, name: action.name}
@@ -66,7 +65,7 @@ const activeCharacter = (state = defaultCharacter, action) => {
     case 'NEW_CHARACTER':
       return {...action.character, name: nameGen.newName()}
     case 'CHANGE_GAME_TYPE':
-      return createCharacterTemplate(action.name)
+      return {...createCharacterTemplate(action.name), name: nameGen.newName()}
     default:
       return state
   }

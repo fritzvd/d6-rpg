@@ -5,7 +5,7 @@ import './Attribute.css'
 
 import calculateDice from '../../helpers/calculateDice'
 
-const Attribute = ({dispatch, attribute, characterId}) => {
+const Attribute = ({dispatch, attribute, characterId, skills}) => {
   return (
     <div className="fl w-50 pa2 Attribute">
       <div className="mb4">
@@ -15,20 +15,26 @@ const Attribute = ({dispatch, attribute, characterId}) => {
           <button onClick={() => dispatch(incrementAttribute(attribute.id, characterId))}>+</button>
         </div>
       </div>
-      {attribute.skills.map((skill, key) => <Skill dispatch={dispatch} key={key} skill={skill} />)}
+      {
+        skills.map((skill, key) => {
+          console.log(skill)
+          return <Skill dispatch={dispatch} key={key} skill={skill} characterId={characterId}/>
+        })
+      }
       <form
         onSubmit={e => {
           e.preventDefault()
           let selector = document.querySelector(`#select-skill-${attribute.name}`).options
           let values = Array.from(selector).filter((o) => o.selected).map((o) => o.value)
-          console.log(values)
           dispatch(addSkill(characterId, attribute.id, values))}
         }>
         <label htmlFor="skillsAdd" className="f6 b db mb2">Choose some skills <span className="normal black-60"></span></label>
         <select id={`select-skill-${attribute.name}`} multiple name="skillsAdd"
             className="input-reset ba b--black-20 pa2 mb2 db w-100"
               >
-                {attribute.listOfSkills.map((skill, i) => {
+                {attribute.listOfSkills
+                  .filter((skill) => skills.indexOf(skill.name) === -1)  // TODO: filter out names
+                  .map((skill, i) => {
                   
                   return <option key={i} value={skill.name}>{skill.name}</option>
                 })}

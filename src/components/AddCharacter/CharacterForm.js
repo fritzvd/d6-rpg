@@ -17,7 +17,7 @@ const CharacterForm = ({dispatch, character}) => {
       <label htmlFor="age" className="f6 b db mb2">Age <span className="normal black-60"></span></label>
       <input type="number"
       onChange={event => {
-        let age = parseInt(event.target.value)
+        let age = parseInt(event.target.value, 10)
         dispatch(changeAge(age, character.id))
       }}
       label="Age"

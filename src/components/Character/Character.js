@@ -27,7 +27,11 @@ const Character = ({dispatch, character}) => {
       </div>}
       <div className="">
         {character.attributes.map((attribute) => {
-          return <Attribute key={attribute.id} attribute={attribute} dispatch={dispatch} characterId={character.id}/>
+          return <Attribute key={attribute.id} attribute={attribute} dispatch={dispatch} characterId={character.id}
+            skills={character.skills
+              .filter((skill) => {
+                return attribute.skillIds.indexOf(skill.id) > -1
+              }) }/>
         })}
       </div>
     </div>
