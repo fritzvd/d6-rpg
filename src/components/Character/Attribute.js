@@ -6,6 +6,11 @@ import './Attribute.css'
 import calculateDice from '../../helpers/calculateDice'
 
 const Attribute = ({dispatch, attribute, characterId, skills}) => {
+  const submitSkills = () => {
+    let selector = document.querySelector(`#select-skill-${attribute.name}`).options
+    let values = Array.from(selector).filter((o) => o.selected).map((o) => o.value)
+    dispatch(addSkill(characterId, attribute.id, values))
+  }
   return (
     <div className="fl w-50 pa2 Attribute">
       <div className="mb4">
@@ -16,24 +21,29 @@ const Attribute = ({dispatch, attribute, characterId, skills}) => {
         </div>
       </div>
       {
-        skills.map((skill, key) => {
-          console.log(skill)
+        skills.filter(skill => skill.attributeId === attribute.id).map((skill, key) => {
           return <Skill dispatch={dispatch} key={key} skill={skill} characterId={characterId}/>
         })
       }
       <form
+        onKeyDownCapture={ e => {
+          if (e.keyCode === 13) {
+            submitSkills()
+          }
+        }}
         onSubmit={e => {
-          e.preventDefault()
-          let selector = document.querySelector(`#select-skill-${attribute.name}`).options
-          let values = Array.from(selector).filter((o) => o.selected).map((o) => o.value)
-          dispatch(addSkill(characterId, attribute.id, values))}
+            e.preventDefault()
+            submitSkills()
+          }
         }>
         <label htmlFor="skillsAdd" className="f6 b db mb2">Choose some skills <span className="normal black-60"></span></label>
         <select id={`select-skill-${attribute.name}`} multiple name="skillsAdd"
             className="input-reset ba b--black-20 pa2 mb2 db w-100"
               >
                 {attribute.listOfSkills
-                  .filter((skill) => skills.indexOf(skill.name) === -1)  // TODO: filter out names
+                  .filter((skill) => {
+                    let skillNames = skills.map(listSkill => listSkill.name)
+                    return skillNames.indexOf(skill.name) < 0})  // TODO: filter out names
                   .map((skill, i) => {
                   
                   return <option key={i} value={skill.name}>{skill.name}</option>
