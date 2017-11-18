@@ -11,9 +11,15 @@ App to go with d6 rpg's.
 
 # TODO
 
-* Name generator
-* Skills list
-* Add skills possibility
-* save to local-forage
-* export to json
-* app?
+- [x] Name generator
+- [x] Skills list
+- [x] Add skills possibility
+- [ ] Special abilities
+- [ ] Advantages/disadvantages
+- [ ] HUGE REFACTOR
+- [ ] CSS themes for different genres
+- [ ] complete the different genres
+- [ ] 
+- [ ] save to local-forage
+- [ ] export to json
+- [ ] app?
