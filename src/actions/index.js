@@ -95,7 +95,7 @@ export const decrementSkill = (skillId, characterId) => {
 
 export const incrementSkill = (skillId, characterId) => {
   return {
-    type: 'DECREMENT_SKILL',
+    type: 'INCREMENT_SKILL',
     skillId,
     characterId
   }

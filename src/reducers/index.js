@@ -2,6 +2,8 @@ import { combineReducers } from 'redux'
 
 import incrementAttribute from './incrementAttribute'
 import decrementAttribute from './decrementAttribute'
+import incrementSkill from './incrementSkill'
+import decrementSkill from './decrementSkill'
 import addSkill from './addSkill'
 
 import createCharacterTemplate from '../actions/characterTemplate'
@@ -21,10 +23,10 @@ export const characters = (state = [], action) => {
       return incrementAttribute(state, action)
     case 'DECREMENT_ATTRIBUTE':
       return decrementAttribute(state, action)
-    // case 'INCREMENT_SKILL':
-    //   return incrementAttribute(state, action)
-    // case 'DECREMENT_SKILL':
-    //   return decrementAttribute(state, action)
+    case 'INCREMENT_SKILL':
+      return incrementSkill(state, action)
+    case 'DECREMENT_SKILL':
+      return decrementSkill(state, action)
     case 'BUY_ATTRIBUTE_DIE':
       return state.map((character) => {
         if (action.id === character.id && character.dicePool < 3 * 18) {

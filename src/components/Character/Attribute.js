@@ -22,7 +22,8 @@ const Attribute = ({dispatch, attribute, characterId, skills}) => {
       </div>
       {
         skills.filter(skill => skill.attributeId === attribute.id).map((skill, key) => {
-          return <Skill dispatch={dispatch} key={key} skill={skill} characterId={characterId}/>
+          return <Skill dispatch={dispatch} key={key} skill={skill}
+                    characterId={characterId} attributeDice={attribute.dicePoints}/>
         })
       }
       <form

@@ -10,7 +10,7 @@ import App from './components/App/App';
 let store = createStore(d6App)
 render(
   <Provider store={store}>
-    <App />
+    <App className="flex"/>
   </Provider>,
   document.getElementById('root')
 )

@@ -4,7 +4,7 @@ const addSkill = (newState, action) => {
     character.skills = character.skills
       .concat(action.skillNames
         .map((skillName) => {
-          return {id: id++, name: skillName, attributeId: action.attributeId } 
+          return {id: id++, name: skillName, attributeId: action.attributeId, dicePoints: 0} 
         })
       )
     character.attributes = character.attributes.map((attribute) => {
