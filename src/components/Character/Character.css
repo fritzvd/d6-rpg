@@ -6,9 +6,18 @@
   position: relative;
 }
 
-.right-top {
+.Character .right-top {
   position: absolute;
   padding: 1em;
   top: 0;
   right: 0;
+}
+
+.Character .max-width {
+  max-width: 600px;
+}
+
+.Character .character-stuff div {
+  border-bottom: 1px black solid;
+  padding: 1em 1em 0 1em;
 }

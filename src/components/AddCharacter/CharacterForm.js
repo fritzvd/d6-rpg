@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { changeName, changeAge, changeDescription } from '../../actions'
+import {
+  changeName,
+  changeAge,
+  changeDescription,
+  changeProperty
+} from '../../actions'
 
 const CharacterForm = ({dispatch, character}) => {
   return (
@@ -33,6 +38,24 @@ const CharacterForm = ({dispatch, character}) => {
           dispatch(changeDescription(description, character.id))
           }}>
         </textarea>
+
+        <label htmlFor="occupation" className="f6 b db mb2">Occupation <span className="normal black-60"></span></label>
+        <input required id="occupation" className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="occupation-desc" onChange={event => {
+        let occupation = event.target.value
+        dispatch(changeProperty(occupation, 'occupation', character.id))
+      }}
+      label="occupation"
+      value={character.occupation} />
+
+      <label htmlFor="gender" className="f6 b db mb2">Gender <span className="normal black-60"></span></label>
+        <input required id="gender" className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="gender-desc" onChange={event => {
+        let gender = event.target.value
+        dispatch(changeProperty(gender, 'gender', character.id))
+      }}
+      label="gender"
+      value={character.gender} />
+      <small id="name-desc" className="f6 black-60 db mb2">Pick a generated name, or create your own.</small>
+
         <small id="description-desc" className="f6 black-60">Write a nice back story for your character</small>
       </div>
     </div>

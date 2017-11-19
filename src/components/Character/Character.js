@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { removeCharacter, buyAttributeDie } from '../../actions'
+import { removeCharacter, buyAttributeDie, exportToJSON } from '../../actions'
+import calculateDice from '../../helpers/calculateDice'
 import Attribute from './Attribute'
 import './Character.css'
 
@@ -9,20 +10,48 @@ const Character = ({dispatch, character}) => {
   return  (
   <div className="Character mw9 center ph3-ns">
     <div className="cf ph2-ns">
-      <h1>{character.name} - {character.age}</h1>
+      <div className="fl w-100 pa2">
+        <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
+         onClick={() => dispatch(exportToJSON(character.id, ))}> Export To JSON </a>
+      </div>
+    </div>
+    <div className="cf ph2-ns">
       <div className="right-top" onClick={()=> dispatch(removeCharacter(character.id))}>x</div>
-      <div className="fl w-100 pa2 ">
-        {character.description}
+      <div className="max-width character-stuff">
+        <div className="fl w-100 w-50-ns pa2">
+          <strong>Character Name: </strong>{character.name}
+        </div>
+        <div className="fl w-100 w-50-ns pa2">
+          <strong>Occupation: </strong>{character.occupation}
+        </div>
+        <div className="fl w-100 w-50-ns pa2">
+          <strong>Race: </strong>{character.race}
+        </div>
+        <div className="fl w-100 w-50-ns pa2">
+          <strong>Gender: </strong>{character.gender}
+        </div>
+        <div className="fl w-100 w-third-ns pa2">
+          <strong>Age: </strong>{character.age}
+        </div>
+        <div className="fl w-100 w-third-ns pa2">
+          <strong>Height: </strong>{character.height}
+        </div>
+        <div className="fl w-100 w-third-ns pa2">
+          <strong>Weight: </strong>{character.weight}
+        </div>
+        <div className="fl w-100 pa2 ">
+          <strong>Description: </strong>{character.description}
+        </div>
       </div>
       {<div className="mw9">
-        <div className="w-50">
+        <div className="w-50 pa2">
          <a className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{dispatch(buyAttributeDie(character.id))}}>Buy Attribute Die</a>
         </div>
-        <div className="w-20">
+        <div className="w-50">
         Creation points: {character.creationPoints }
         </div>
-        <div className="w-20">
-          Dice pool: { character.dicePool }
+        <div className="w-50">
+          Dice pool: { calculateDice(character.dicePool) }
         </div>
       </div>}
       <div className="">
@@ -35,7 +64,6 @@ const Character = ({dispatch, character}) => {
         })}
       </div>
     </div>
-    <button></button>
   </div>
   )
 }

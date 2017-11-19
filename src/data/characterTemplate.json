@@ -7,5 +7,10 @@
   "skillIds": [],
   "skills": [],
   "attributeIds": [],
-  "attributes": []
+  "attributes": [],
+  "gender": "non-binary",
+  "weight": "average",
+  "height": "188(cm)",
+  "race": "human",
+  "occupation": "Arrow fodder"
 }

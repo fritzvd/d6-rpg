@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "/d6-rpg/",
   "dependencies": {
+    "jspdf": "^1.3.5",
     "material-ui": "^0.19.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

@@ -270,13 +270,16 @@
     ]
   },
   "generic": {
-    "attributes": ["prowess", "acumen", "bearing", "finesse"]
+    "attributes": ["prowess", "acumen", "bearing", "finesse"],
+    "skills": []
   },
   "minisix": {
-    "attributes": ["might", "agility", "wit", "charm"]
+    "attributes": ["might", "agility", "wit", "charm"],
+    "skills": []
   },
 
   "starwars": {
-    "attributes": ["dexterity", "knowledge", "mechanical", "perception", "strength", "technical"]
+    "attributes": ["dexterity", "knowledge", "mechanical", "perception", "strength", "technical"],
+    "skills": []
   }
 }

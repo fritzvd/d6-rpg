@@ -13,7 +13,12 @@ const addSkill = (newState, action) => {
         attribute.id === action.attributeId &&
         character.id === action.characterId
       ) {
-        newAttribute = {...attribute, skillIds: attribute.skillIds.concat(character.skills.map((skill) => skill.id))}
+        newAttribute = {
+          ...attribute,
+          skillIds: character.skills
+          .filter((skill) => skill.attributeId === attribute.id)
+          .map(skill => skill.id)
+        }
       }
       return newAttribute
     })

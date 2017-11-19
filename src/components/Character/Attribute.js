@@ -12,7 +12,7 @@ const Attribute = ({dispatch, attribute, characterId, skills}) => {
     dispatch(addSkill(characterId, attribute.id, values))
   }
   return (
-    <div className="fl w-50 pa2 Attribute">
+    <div className="fl w-100 w-50-ns pa2 Attribute">
       <div className="mb4">
         <strong>{attribute.name} - {calculateDice(attribute.dicePoints)} </strong>
         <div className="right-float">

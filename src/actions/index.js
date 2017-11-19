@@ -61,6 +61,15 @@ export const changeAge = (age, characterId) => {
   }
 }
 
+export const changeProperty = (newValue, property, characterId) => {
+  return {
+    type: 'CHANGE_PROPERTY',
+    characterId,
+    property,
+    newValue
+  }
+}
+
 export const changeDescription = (description, characterId) => {
   return {
     type: 'CHANGE_DESCRIPTION',
@@ -97,6 +106,13 @@ export const incrementSkill = (skillId, characterId) => {
   return {
     type: 'INCREMENT_SKILL',
     skillId,
+    characterId
+  }
+}
+
+export const exportToJSON = (characterId) => {
+  return {
+    type: 'EXPORT_TO_JSON',
     characterId
   }
 }
