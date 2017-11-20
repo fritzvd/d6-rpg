@@ -1,4 +1,7 @@
 import { combineReducers } from 'redux'
+import localforage from 'localforage'
+
+import { addCharacter } from '../actions'
 
 import incrementAttribute from './incrementAttribute'
 import decrementAttribute from './decrementAttribute'
@@ -47,6 +50,14 @@ export const characters = (state = [], action) => {
     case 'EXPORT_TO_JSON':
       let json = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(state.reduce((prevCharacter, thisCharacter) => (thisCharacter.id === action.characterId) ? thisCharacter : prevCharacter)))}`
       window.open(json, '_blank')
+      return state
+    case 'SAVE':
+      localforage.setItem('character' + action.characterId, state.reduce((prevCharacter, thisCharacter) => (thisCharacter.id === action.characterId) ? thisCharacter : prevCharacter)).then((bla) => console.log(bla)).catch((err) => console.error(err))
+      return state
+    case 'LOAD':
+      localforage.getItem('character0').then((character) => {
+        action.dispatch(addCharacter(character))
+      })
       return state
     default:
       return state

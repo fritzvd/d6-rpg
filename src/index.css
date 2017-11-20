@@ -3,3 +3,35 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+
+@media print {
+ /* *{ margin: 0 !important; padding: 0 !important; }
+  .footer, .footerarea { display: none; }
+  html, body {
+    /*changing width to 100% causes huge overflow and wrap
+    height:100%;
+    // overflow: hidden;
+    background: #FFF;
+    font-size: 9.5pt;
+  }
+
+  li { margin: 0 0 10px 20px !important;}*/
+
+  select, button, form {
+    visibility: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  .Attribute {
+    display: inline;
+    width: 40%;
+    position: relative;
+    /* float: left; */
+  }
+
+  div {
+    display: inline-block;
+  }
+}

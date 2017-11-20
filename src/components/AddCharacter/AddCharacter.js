@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addCharacter, newCharacter, changeGameType} from '../../actions'
+import { addCharacter, newCharacter, changeGameType, load} from '../../actions'
 import CharacterForm from './CharacterForm'
 import './AddCharacter.css'
 import aT from '../../data/attributeTypes'
@@ -10,6 +10,8 @@ let id = 0;
 let AddCharacter = ({dispatch, character, gameTypes, gameType}) => {
     return (
       <div className="AddCharacter mw9 center ph3-ns">
+        <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
+         onClick={() => dispatch(load(dispatch))}>Load from cache</a>
         <form
           onSubmit={e => {
             e.preventDefault()

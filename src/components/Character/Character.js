@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { removeCharacter, buyAttributeDie, exportToJSON } from '../../actions'
+import { removeCharacter, buyAttributeDie, exportToJSON, save } from '../../actions'
 import calculateDice from '../../helpers/calculateDice'
 import Attribute from './Attribute'
 import './Character.css'
@@ -12,7 +12,10 @@ const Character = ({dispatch, character}) => {
     <div className="cf ph2-ns">
       <div className="fl w-100 pa2">
         <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-         onClick={() => dispatch(exportToJSON(character.id, ))}> Export To JSON </a>
+         onClick={() => dispatch(exportToJSON(character.id))}> Export To JSON </a>
+        <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
+         onClick={() => dispatch(save(character.id))}>Save</a>
+         {/* // import from json with filreader? */}
       </div>
     </div>
     <div className="cf ph2-ns">

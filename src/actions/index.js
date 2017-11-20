@@ -116,3 +116,17 @@ export const exportToJSON = (characterId) => {
     characterId
   }
 }
+
+export const save = (characterId) => {
+  return {
+    type: 'SAVE',
+    characterId
+  }
+}
+
+export const load = (dispatch) => {
+  return {
+    type: 'LOAD',
+    dispatch
+  }
+}
