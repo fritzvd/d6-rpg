@@ -14,7 +14,7 @@ const Character = ({dispatch, character}) => {
         <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
          onClick={() => dispatch(exportToJSON(character.id))}> Export To JSON </a>
         <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-         onClick={() => dispatch(save(character.id))}>Save</a>
+         onClick={() => dispatch(save())}>Save All Characters</a>
          {/* // import from json with filreader? */}
       </div>
     </div>

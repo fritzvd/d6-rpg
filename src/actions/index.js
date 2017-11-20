@@ -130,3 +130,10 @@ export const load = (dispatch) => {
     dispatch
   }
 }
+
+export const stateFromCache = (state) => {
+  return {
+    type: 'STATE_FROM_CACHE',
+    state
+  }
+}

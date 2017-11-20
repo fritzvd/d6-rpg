@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import localforage from 'localforage'
 
-import { addCharacter } from '../actions'
+import { stateFromCache } from '../actions'
 
 import incrementAttribute from './incrementAttribute'
 import decrementAttribute from './decrementAttribute'
@@ -52,13 +52,18 @@ export const characters = (state = [], action) => {
       window.open(json, '_blank')
       return state
     case 'SAVE':
-      localforage.setItem('character' + action.characterId, state.reduce((prevCharacter, thisCharacter) => (thisCharacter.id === action.characterId) ? thisCharacter : prevCharacter)).then((bla) => console.log(bla)).catch((err) => console.error(err))
+      localforage.setItem('characters', state)
+        .catch((err) => console.error('Something went wrong', err))
       return state
     case 'LOAD':
-      localforage.getItem('character0').then((character) => {
-        action.dispatch(addCharacter(character))
+      localforage.getItem('characters').then((characters) => {
+        if (characters) {
+          action.dispatch(stateFromCache(characters))
+        }
       })
       return state
+    case 'STATE_FROM_CACHE':
+      return action.state
     default:
       return state
   }
