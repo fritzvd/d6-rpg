@@ -8,11 +8,11 @@ import aT from '../../data/attributeTypes'
 
 let id = 0;
 let AddCharacter = ({dispatch, character, gameTypes, gameType}) => {
-  dispatch(load(dispatch))
+  // dispatch(load(dispatch))
   return (
     <div className="AddCharacter mw9 center ph3-ns">
-      {/* <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-        onClick={() => dispatch(load(dispatch))}>Load from cache</a> */}
+      <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
+        onClick={() => dispatch(load(dispatch))}>Load from cache</a>
       <form
         onSubmit={e => {
           e.preventDefault()

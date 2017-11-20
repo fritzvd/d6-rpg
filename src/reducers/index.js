@@ -23,6 +23,12 @@ export const characters = (state = [], action) => {
     case 'ADD_CHARACTER':
       return [...state, {...action.character}]
     case 'REMOVE_CHARACTER':
+      localforage.getItem('characters').then((characters) => {
+        if (characters) {
+          localforage.setItem('characters', characters.filter(character => character.id !== action.id))
+            .then(newState => action.dispatch(stateFromCache(newState)))
+        }
+      })
       return state.filter((character) => character.id !== action.id)
     case 'INCREMENT_ATTRIBUTE':
       return incrementAttribute(state, action)

@@ -19,7 +19,7 @@ const Character = ({dispatch, character}) => {
       </div>
     </div>
     <div className="cf ph2-ns">
-      <div className="right-top" onClick={()=> dispatch(removeCharacter(character.id))}>x</div>
+      <div className="right-top" onClick={()=> dispatch(removeCharacter(character.id, dispatch))}>x</div>
       <div className="max-width character-stuff">
         <div className="fl w-100 w-50-ns pa2">
           <strong>Character Name: </strong>{character.name}

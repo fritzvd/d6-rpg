@@ -7,10 +7,11 @@ export const addCharacter = (character) => {
   }
 }
 
-export const removeCharacter = id => {
+export const removeCharacter = (id, dispatch) => {
   return  {
     type: 'REMOVE_CHARACTER',
-    id: id
+    id: id,
+    dispatch
   }
 }
 
