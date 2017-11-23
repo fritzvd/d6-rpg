@@ -53,6 +53,18 @@ export const characters = (state = [], action) => {
     case 'CHANGE_NAME':
       return state.map((character) => 
       (action.characterId === character.id) ? {...character, name: action.name} : character)
+    case 'CHANGE_PROPERTY':
+      return state.map(
+        (character) => {
+          if (action.characterId === character.id) {
+            let newCharacter = {...character}
+            newCharacter[action.property] = action.newValue
+            return newCharacter
+          } else {
+            return character
+          }
+        }
+      )
     case 'EXPORT_TO_JSON':
       let json = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(state.reduce((prevCharacter, thisCharacter) => (thisCharacter.id === action.characterId) ? thisCharacter : prevCharacter)))}`
       window.open(json, '_blank')

@@ -21,3 +21,13 @@
   border-bottom: 1px black solid;
   padding: 1em 1em 0 1em;
 }
+
+.Character input {
+  /* display: inline; */
+  width: 100%;
+  border: 0px;
+}
+
+.clearit {
+  clear: both;
+}

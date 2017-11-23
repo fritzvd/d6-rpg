@@ -25,10 +25,10 @@ body {
     height: 0;
   }
   .Attribute {
-    display: inline;
+    /* display: inline; */
     width: 40%;
     position: relative;
-    /* float: left; */
+    float: left;
   }
 
   div {

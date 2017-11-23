@@ -1,7 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { removeCharacter, buyAttributeDie, exportToJSON, save } from '../../actions'
+import {
+  changeProperty,
+  removeCharacter,
+  buyAttributeDie,
+  exportToJSON,
+  save,
+ } from '../../actions'
 import calculateDice from '../../helpers/calculateDice'
 import Attribute from './Attribute'
 import './Character.css'
@@ -17,12 +23,11 @@ const Character = ({dispatch, character}) => {
          onClick={() => dispatch(save())}>Save All Characters</a>
          {/* // import from json with filreader? */}
       </div>
-    </div>
-    <div className="cf ph2-ns">
       <div className="right-top" onClick={()=> dispatch(removeCharacter(character.id, dispatch))}>x</div>
       <div className="max-width character-stuff">
         <div className="fl w-100 w-50-ns pa2">
-          <strong>Character Name: </strong>{character.name}
+          <strong>Character Name: </strong>
+          <input value={character.name} onChange={(e) => dispatch(changeProperty(e.target.value, 'name',character.id))} />
         </div>
         <div className="fl w-100 w-50-ns pa2">
           <strong>Occupation: </strong>{character.occupation}
@@ -46,7 +51,7 @@ const Character = ({dispatch, character}) => {
           <strong>Description: </strong>{character.description}
         </div>
       </div>
-      {<div className="mw9">
+      {<div className="mw9 clearit">
         <div className="w-50 pa2">
          <a className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{dispatch(buyAttributeDie(character.id))}}>Buy Attribute Die</a>
         </div>

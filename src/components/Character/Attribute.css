@@ -13,3 +13,9 @@
 .right-float {
   float: right;
 }
+
+.Attribute {
+  width: 40%;
+  position: relative;
+  float: left;
+}
