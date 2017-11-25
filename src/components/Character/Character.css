@@ -16,18 +16,49 @@
 .Character .max-width {
   max-width: 600px;
 }
+.character-stuff {
+  /* display: flex; */
+}
 
 .Character .character-stuff div {
   border-bottom: 1px black solid;
   padding: 1em 1em 0 1em;
+  /* display: flex; */
 }
 
 .Character input {
   /* display: inline; */
+  background: none;
   width: 100%;
   border: 0px;
 }
 
 .clearit {
   clear: both;
+}
+
+/* @import url('https://fonts.googleapis.com/css?family=Tangerine'); */
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
+/*
+ texture source: https://fantasystock.deviantart.com/art/Seamless-Parchment-Texture-58517493
+ texture 2 source: https://struckdumb.deviantart.com/art/Heavy-Paper-104474916
+ */
+.fantasy {
+  font-family: fantasy;
+  background: url('/img/fantasy-texture.jpg') top center;
+}
+
+.fantasy > div {
+  border-radius: 5px;
+  padding: 2em;
+  background: rgba(255, 247, 212, 0.8)
+}
+
+
+.fantasy input,
+.fantasy select,
+.fantasy button {
+  background: none;
+  font-family: fantasy;
 }

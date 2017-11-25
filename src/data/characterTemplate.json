@@ -3,6 +3,7 @@
   "age": 0,
   "creationPoints": 79,
   "dicePool": 0,
+  "skillDicePool": 0,
   "description": "Always on the run, always cuddly.",
   "skillIds": [],
   "skills": [],

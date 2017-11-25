@@ -79,12 +79,14 @@ export const changeDescription = (description, characterId) => {
   }
 }
 
-export const buyAttributeDie = (id) => {
+export const buyDie = (id, dieType) => {
   return {
-    type: 'BUY_ATTRIBUTE_DIE',
-    id
+    type: 'BUY_DIE',
+    id,
+    dieType
   }
 }
+
 
 export const addSkill = (characterId, attributeId, skillNames) => {
   return {

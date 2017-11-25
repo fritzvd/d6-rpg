@@ -14,7 +14,15 @@ import createCharacterTemplate from '../actions/characterTemplate'
 import NameGenerator from '../name-generator'
 import lotr from '../data/lotr'
 
-import { MAX_ATTRIBUTE_DICE, ATTRIBUTE_DIE_COSTS, PIPS_IN_DIE} from '../helpers/constants'
+import {
+  ATTRIBUTE_DIE,
+  SKILL_DIE,
+  MAX_ATTRIBUTE_DICE,
+  ATTRIBUTE_DIE_COSTS,
+  PIPS_IN_DIE,
+  MAX_TOTAL_SKILL_DICE,
+  SKILL_DIE_COSTS
+} from '../helpers/constants'
 
 const nameGen = new NameGenerator(2, lotr)
 
@@ -38,16 +46,35 @@ export const characters = (state = [], action) => {
       return incrementSkill(state, action)
     case 'DECREMENT_SKILL':
       return decrementSkill(state, action)
-    case 'BUY_ATTRIBUTE_DIE':
-      return state.map((character) => {
-        if (action.id === character.id && character.dicePool < PIPS_IN_DIE * MAX_ATTRIBUTE_DICE) {
-          character = {...character, 
-            creationPoints: character.creationPoints - ATTRIBUTE_DIE_COSTS,
-            dicePool: character.dicePool + PIPS_IN_DIE
+    case 'BUY_DIE':
+    let map
+      switch (action.dieType) {
+        case ATTRIBUTE_DIE:
+          map = (character) => {
+            if (action.id === character.id &&
+                character.dicePool < PIPS_IN_DIE * MAX_ATTRIBUTE_DICE) {
+              character = {...character, 
+                creationPoints: character.creationPoints - ATTRIBUTE_DIE_COSTS,
+                dicePool: character.dicePool + PIPS_IN_DIE
+              }
+            } 
+            return character
           }
-        } 
-        return character
-      })
+          break;
+        case SKILL_DIE:
+          map = (character) => {
+            if (action.id === character.id &&
+                character.skillDicePool < PIPS_IN_DIE * MAX_TOTAL_SKILL_DICE) {
+              character = {...character, 
+                creationPoints: character.creationPoints - SKILL_DIE_COSTS,
+                skillDicePool: character.skillDicePool + PIPS_IN_DIE
+              }
+            } 
+            return character
+          }
+          break;
+      }
+      return state.map(map)
     case 'ADD_SKILL':
       return addSkill(state, action)
     case 'CHANGE_NAME':
