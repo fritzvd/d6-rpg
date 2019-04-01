@@ -18,3 +18,9 @@
   position: relative;
   float: left;
 }
+
+
+.Attribute select:active,
+.Attribute select:hover {
+  outline-color: black;
+}
