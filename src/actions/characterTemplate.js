@@ -1,6 +1,6 @@
-import * as attributeTypes from '../data/attributeTypes.json'
-import * as attributeTemplate from '../data/attributeTemplate.json'
-import * as characterTemplate from '../data/characterTemplate.json'
+import attributeTypes from '../data/attributeTypes.json'
+import attributeTemplate from '../data/attributeTemplate.json'
+import characterTemplate from '../data/characterTemplate.json'
 
 
 const createCharacterTemplate = (type) => {

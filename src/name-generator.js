@@ -49,7 +49,7 @@ export default class NameGenerator {
         let suffix = "";
         while (true) {
             suffix = this.mdc.getSuffix(prefix);
-            if (suffix == "\n" || name.length > 9) {
+            if (suffix === "\n" || name.length > 9) {
                 break;
             }
             else {

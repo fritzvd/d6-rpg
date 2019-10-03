@@ -1,4 +1,5 @@
 import createCharacterTemplate from './characterTemplate'
+import localforage from 'localforage'
 
 export const addCharacter = (character) => {
   return  {
@@ -7,12 +8,14 @@ export const addCharacter = (character) => {
   }
 }
 
-export const removeCharacter = (id, dispatch) => {
-  return  {
-    type: 'REMOVE_CHARACTER',
-    id: id,
-    dispatch
-  }
+export const removeCharacter = (id) => (dispatch) => {
+  localforage.getItem('characters').then((characters) => {
+    if (characters) {
+      localforage.setItem('characters', characters.filter(character => character.id !== id))
+        .then(newState => dispatch(stateFromCache(newState)))
+    }
+  })
+
 }
 
 export const incrementAttribute = (attributeId, characterId) => {
@@ -120,19 +123,21 @@ export const exportToJSON = (characterId) => {
   }
 }
 
-export const save = (characterId) => {
-  return {
-    type: 'SAVE',
-    characterId
-  }
+export const save = (character) => (dispatch) => {
+  // return 
+  return localforage.getItem('characters').then(characters => {
+    localforage.setItem('characters', [...characters, character]).catch((err) => console.error('Something went wrong', err))
+  })
 }
 
-export const load = (dispatch) => {
-  return {
-    type: 'LOAD',
-    dispatch
-  }
+export const load = () => (dispatch) => {
+  return localforage.getItem('characters').then((characters) => {
+      if (characters) {
+        dispatch(stateFromCache(characters))
+      }
+    })
 }
+
 
 export const stateFromCache = (state) => {
   return {
@@ -140,3 +145,8 @@ export const stateFromCache = (state) => {
     state
   }
 }
+
+export const setActiveCharacter = (character) => ({
+  type: 'SET_ACTIVE_CHARACTER',
+  character
+})

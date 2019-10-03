@@ -1,4 +1,4 @@
-import {SKILL_DIE_COST, MAX_SKILL_DICE, PIPS_IN_DIE} from '../helpers/constants'
+import {MAX_SKILL_DICE } from '../helpers/constants'
 
 const incrementSkill = (state, action) => {
   let newState = state.map(character => {

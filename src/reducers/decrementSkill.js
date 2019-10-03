@@ -1,4 +1,4 @@
-import {SKILL_DIE_COSTS, PIPS_IN_DIE} from '../helpers/constants'
+import {SKILL_DIE_COSTS } from '../helpers/constants'
 
 const decrementSkill = (state, action) => {
   let newState = state.map(character => {

@@ -1,11 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import {
   changeProperty,
   removeCharacter,
   buyDie,
-  exportToJSON,
   save,
  } from '../../actions'
 import calculateDice from '../../helpers/calculateDice'
@@ -17,15 +15,17 @@ import {
   SKILL_DIE
 } from '../../helpers/constants'
 
-const Character = ({dispatch, character}) => {
+const Character = ({character, json}) => {
+  const dispatch = (bla) => {console.log(bla)}
+  console.log(character)
   return  (
   <div className={`Character mw9 center ph3-ns ${character.genre}`}>
     <div className="cf ph2-ns">
       <div className="fl w-100 pa2">
         <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-         onClick={() => dispatch(exportToJSON(character.id))}> Export To JSON </a>
+         href={json(character.id)} target="_blank"> Export To JSON </a>
         <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-         onClick={() => dispatch(save())}>Save All Characters</a>
+         onClick={() => dispatch(save(character))}>Save Character</a>
          {/* // import from json with filreader? */}
       </div>
       <div className="right-top" onClick={()=> dispatch(removeCharacter(character.id, dispatch))}>x</div>
@@ -85,7 +85,4 @@ const Character = ({dispatch, character}) => {
   )
 }
 
-const mapStateToProps = state => {
-  return state
-}
-export default connect(mapStateToProps)(Character)
+export default Character

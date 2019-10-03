@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Overview from '../Overview/Overview'
+import {setActiveCharacter} from '../../actions'
 
 const getVisibleCharacters = (characters, filter) => {
   switch (filter) {
@@ -15,6 +16,7 @@ const getVisibleCharacters = (characters, filter) => {
 }
 
 const getCharacterIds = (characters) => {
+  console.log(characters)
   return characters.map((character) => character.id)
 }
 
@@ -27,9 +29,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
-      dispatch('id') //Todo
-    }
+    setActiveCharacter: (character) => {dispatch(setActiveCharacter(character))}
   }
 }
 
