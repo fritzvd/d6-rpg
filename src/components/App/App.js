@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
-import { Container } from 'react-bulma-components'
+import { Container, Hero, Heading } from 'react-bulma-components'
 import styled from 'styled-components'
 
 import OverviewContainer from '../Overview/OverviewContainer'
@@ -9,10 +9,7 @@ import CharacterContainer from '../Character/CharacterContainer'
 
 import Menu from '../Menu/Menu'
 
-import './App.css'
 import 'react-bulma-components/dist/react-bulma-components.min.css';
-
-import 'tachyons'
 
 
 export const StyledContainer = styled(Container)`
@@ -21,14 +18,22 @@ export const StyledContainer = styled(Container)`
 `
 
 const Home = (props) => (
+  <>
+  <Hero color="light">
+    <Hero.Body>
+      <Heading>OpenD6 Utility</Heading>
+      <Heading subtitle size={6}>Create and keep track of characters</Heading>
+    </Hero.Body>
+  </Hero>
   <StyledContainer>
     <OverviewContainer {...props} />
   </StyledContainer>
+  </>
 )
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/d6-rpg" >
       <Menu />
       <Switch>
         <Route exact path="/" component={Home} />

@@ -1,9 +1,10 @@
 import createCharacterTemplate from './characterTemplate'
 import localforage from 'localforage'
+import * as constants from '../helpers/constants'
 
 export const addCharacter = (character) => {
   return  {
-    type: 'ADD_CHARACTER',
+    type: constants.ADD_CHARACTER,
     character: {...character}
   }
 }
@@ -20,7 +21,7 @@ export const removeCharacter = (id) => (dispatch) => {
 
 export const incrementAttribute = (attributeId, characterId) => {
   return {
-    type: 'INCREMENT_ATTRIBUTE',
+    type: constants.INCREMENT_ATTRIBUTE,
     attributeId: attributeId,
     characterId: characterId
   }
@@ -28,7 +29,7 @@ export const incrementAttribute = (attributeId, characterId) => {
 
 export const decrementAttribute = (attributeId, characterId) => {
   return {
-    type: 'DECREMENT_ATTRIBUTE',
+    type: constants.DECREMENT_ATTRIBUTE,
     attributeId: attributeId,
     characterId: characterId
   }
@@ -36,22 +37,28 @@ export const decrementAttribute = (attributeId, characterId) => {
 
 export const newCharacter = (id, type) => {
   return {
-    type: 'NEW_CHARACTER',
+    type: constants.NEW_CHARACTER,
     character: {...createCharacterTemplate(type), id}
   }
 }
 
 export const changeName = (name, id) => {
   return {
-    type: 'CHANGE_NAME',
+    type: constants.CHANGE_NAME,
     name,
     id
   }
 }
 
+export const genName = () => {
+  return {
+    type: constants.GEN_NAME
+  }
+}
+
 export const changeGameType = (name, id) => {
   return {
-    type: 'CHANGE_GAME_TYPE',
+    type: constants.CHANGE_GAME_TYPE,
     name,
     id
   }
@@ -59,15 +66,24 @@ export const changeGameType = (name, id) => {
 
 export const changeAge = (age, characterId) => {
   return {
-    type: 'CHANGE_AGE',
+    type: constants.CHANGE_AGE,
     age,
     characterId
   }
 }
 
+export const genOccupation = (occupation) => ({
+  type: constants.GEN_OCCUPATION,
+})
+
+export const changeOccupation = (occupation) => ({
+  type: constants.CHANGE_OCCUPATION,
+  occupation
+})
+
 export const changeProperty = (newValue, property, characterId) => {
   return {
-    type: 'CHANGE_PROPERTY',
+    type: constants.CHANGE_PROPERTY,
     characterId,
     property,
     newValue
@@ -76,7 +92,7 @@ export const changeProperty = (newValue, property, characterId) => {
 
 export const changeDescription = (description, characterId) => {
   return {
-    type: 'CHANGE_DESCRIPTION',
+    type: constants.CHANGE_DESCRIPTION,
     description,
     characterId
   }
@@ -84,7 +100,7 @@ export const changeDescription = (description, characterId) => {
 
 export const buyDie = (id, dieType) => {
   return {
-    type: 'BUY_DIE',
+    type: constants.BUY_DIE,
     id,
     dieType
   }
@@ -93,7 +109,7 @@ export const buyDie = (id, dieType) => {
 
 export const addSkill = (characterId, attributeId, skillNames) => {
   return {
-    type: 'ADD_SKILL',
+    type: constants.ADD_SKILL,
     characterId,
     attributeId,
     skillNames
@@ -102,7 +118,7 @@ export const addSkill = (characterId, attributeId, skillNames) => {
 
 export const decrementSkill = (skillId, characterId) => {
   return {
-    type: 'DECREMENT_SKILL',
+    type: constants.DECREMENT_SKILL,
     skillId,
     characterId
   }
@@ -110,7 +126,7 @@ export const decrementSkill = (skillId, characterId) => {
 
 export const incrementSkill = (skillId, characterId) => {
   return {
-    type: 'INCREMENT_SKILL',
+    type: constants.INCREMENT_SKILL,
     skillId,
     characterId
   }
@@ -118,7 +134,7 @@ export const incrementSkill = (skillId, characterId) => {
 
 export const exportToJSON = (characterId) => {
   return {
-    type: 'EXPORT_TO_JSON',
+    type: constants.EXPORT_TO_JSON,
     characterId
   }
 }
@@ -141,12 +157,12 @@ export const load = () => (dispatch) => {
 
 export const stateFromCache = (state) => {
   return {
-    type: 'STATE_FROM_CACHE',
+    type: constants.STATE_FROM_CACHE,
     state
   }
 }
 
 export const setActiveCharacter = (character) => ({
-  type: 'SET_ACTIVE_CHARACTER',
+  type: constants.SET_ACTIVE_CHARACTER,
   character
 })

@@ -7,7 +7,7 @@ import incrementSkill from './incrementSkill'
 import decrementSkill from './decrementSkill'
 import addSkill from './addSkill'
 
-import createCharacterTemplate from '../actions/characterTemplate'
+import createCharacterTemplate, {genOccupation} from '../actions/characterTemplate'
 
 import NameGenerator from '../name-generator'
 import lotr from '../data/lotr'
@@ -82,7 +82,7 @@ export const characters = (state = [], action) => {
 }
 const gameType = (state='fantasy', action) => {
   switch (action.type) {
-  case 'CHANGE_GAME_TYPE':
+  case constants.CHANGE_GAME_TYPE:
     return action.name
   default:
     return state
@@ -91,7 +91,7 @@ const gameType = (state='fantasy', action) => {
 
 const defaultCharacter = {
   ...createCharacterTemplate('fantasy'),
-  name: nameGen.newName()
+  name: nameGen.newName(),
 }
 
 export const activeCharacter = (state = defaultCharacter, action) => {
@@ -99,9 +99,12 @@ export const activeCharacter = (state = defaultCharacter, action) => {
     case constants.SET_ACTIVE_CHARACTER:
       return action.character
     case constants.CHANGE_NAME:
+      console.log(action)
       return {...state, name: action.name}
     case constants.GEN_NAME:
       return {...state, name: nameGen.newName()}
+    case constants.GEN_OCCUPATION:
+        return {...state, occupation: genOccupation()}
     case constants.CHANGE_AGE:
       return {...state, age: action.age}
     case constants.CHANGE_DESCRIPTION:
