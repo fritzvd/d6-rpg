@@ -140,7 +140,6 @@ export const exportToJSON = (characterId) => {
 }
 
 export const save = (character) => (dispatch) => {
-  // return 
   return localforage.getItem('characters').then(characters => {
     localforage.setItem('characters', [...characters, character]).catch((err) => console.error('Something went wrong', err))
   })

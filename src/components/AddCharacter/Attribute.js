@@ -34,6 +34,9 @@ export default function Attribute (props) {
       <AttributeTitle>{props.attribute.name}</AttributeTitle>
       <AttributeScore>
         <SmallInput
+          min={Math.floor(props.attribute.minimumDicePoints / 3)}
+          max={Math.floor(props.attribute.maximumDicePoints / 3)}
+          pattern="[0-9]*"
           type="number"
           className="is-primary input"
           help="Change amount of full dice"
@@ -41,6 +44,9 @@ export default function Attribute (props) {
           onChange={(e) => console.log(e.target.value)}/>
         <AdjustedHeight>D +</AdjustedHeight>
         <SmallInput
+          min={0}
+          max={2}
+          pattern="[0-9]*"
           type="number"
           className="is-warning input"
           help="Change amount of pips"

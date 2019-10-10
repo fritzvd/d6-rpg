@@ -1,19 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bulma-components'
-import Input from '../UI/Input'
 import Icon from '../UI/Icon'
-import formFieldFactory from '../UI/formFieldFactory'
 import Attribute from './Attribute'
 
 function Attributes (props) {
   return <>
+    <Button color="info" onClick={() => props.history.push('/character-creation/details')}>
+      <Icon iconName="arrow-left"/><span>Back</span>
+    </Button>
     {props.character.attributes.map(attr => <Attribute attribute={attr} />)}
+
+
+    <Button color="info" onClick={() => props.history.push('/')}>
+      <span>Done</span><Icon iconName="arrow-right"/>
+    </Button>
  </>
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.activeCharacter)
   return {
     character: state.activeCharacter
   }

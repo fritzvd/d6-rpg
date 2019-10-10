@@ -80,7 +80,7 @@ export const characters = (state = [], action) => {
       return state
   }
 }
-const gameType = (state='fantasy', action) => {
+const gameType = (state='starwars', action) => {
   switch (action.type) {
   case constants.CHANGE_GAME_TYPE:
     return action.name
@@ -90,7 +90,7 @@ const gameType = (state='fantasy', action) => {
 }
 
 const defaultCharacter = {
-  ...createCharacterTemplate('fantasy'),
+  ...createCharacterTemplate('starwars'),
   name: nameGen.newName(),
 }
 
@@ -99,7 +99,6 @@ export const activeCharacter = (state = defaultCharacter, action) => {
     case constants.SET_ACTIVE_CHARACTER:
       return action.character
     case constants.CHANGE_NAME:
-      console.log(action)
       return {...state, name: action.name}
     case constants.GEN_NAME:
       return {...state, name: nameGen.newName()}

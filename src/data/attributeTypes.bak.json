@@ -282,7 +282,8 @@
       "prowess",
       "acumen",
       "bearing",
-      "finesse"
+      "finesse",
+      "magic"
     ],
     "skills": []
   },
@@ -291,7 +292,8 @@
       "might",
       "agility",
       "wit",
-      "charm"
+      "charm",
+      "paranormal"
     ],
     "skills": []
   },
@@ -302,7 +304,8 @@
       "mechanical",
       "perception",
       "strength",
-      "technical"
+      "technical",
+      "force"
     ],
     "skills": []
   },

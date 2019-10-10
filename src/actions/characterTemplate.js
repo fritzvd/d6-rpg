@@ -43,9 +43,10 @@ const createCharacterTemplate = (type) => {
   }
 
   character.attributes = attributeTypes[type].attributes.map((attribute, i) => {
+    const magic = i !== attributeTypes[type].attributes.length - 1
     return {
       ...attributeTemplate,
-      dicePoints: attributeTemplate.minimumDicePoints +2,
+      dicePoints: (magic ? attributeTemplate.minimumDicePoints : 0),
       name: attribute,
       id: i,
       listOfSkills: attributeTypes[type].skills

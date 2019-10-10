@@ -7,6 +7,7 @@ import Details from './Details'
 import HighConcept from './HighConcept'
 import SelectGameType from './SelectGameType'
 import Attributes from './Attributes'
+import Skills from './Skills'
 
 const AddCharacter = (props) => {
 
@@ -15,6 +16,7 @@ const AddCharacter = (props) => {
     <Route path="/character-creation/high-concept" component={HighConcept} />
     <Route path="/character-creation/details" component={Details} />
     <Route path="/character-creation/attributes" component={Attributes}/>
+    <Route path="/character-creation/skills" component={Skills}/>
   </StyledContainer>
   )
 }

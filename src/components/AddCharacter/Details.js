@@ -8,7 +8,8 @@ import formFieldFactory from '../UI/formFieldFactory'
 
 function Details (props) {
   return <>
-    <Button color="info" type="button" onClick={() => props.history.push("/character-creation/high-concept")}><Icon iconName="arrow-left" left /><span>Back</span></Button>
+    <Button color="info" type="button" onClick={() => props.history.push("/character-creation/high-concept")}>
+      <Icon iconName="arrow-left" left /><span>Back</span></Button>
     <Input
       type="text"
       placeholder="Type your occupation"

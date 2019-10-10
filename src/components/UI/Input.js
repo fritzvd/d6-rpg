@@ -16,6 +16,9 @@ export default function Input (props) {
       type={props.type}
       onChange={props.onChange}
       placeholder={props.placeholder}
+      pattern={props.pattern}
+      min={props.min}
+      max={props.max}
     />
     {icon}
     {(props.help) ? <p className="help">{props.help}</p> : ''}
