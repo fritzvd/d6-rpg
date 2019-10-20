@@ -9,12 +9,12 @@ const incrementAttribute = (newState, action) => {
         attribute.maximumDicePoints > attribute.dicePoints
       ) {
         changed = true
-        newAttribute = {...attribute, dicePoints: attribute.dicePoints + 1}
+        newAttribute = {...attribute, dicePoints: attribute.dicePoints + action.dicePoints}
       }
       return newAttribute
     })
     if (changed) {
-      return {...character, dicePool: character.dicePool - 1}
+      return {...character, dicePool: character.dicePool - action.dicePoints}
     } else {
       return character
     }

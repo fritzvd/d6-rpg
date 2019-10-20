@@ -19,19 +19,35 @@ export const removeCharacter = (id) => (dispatch) => {
 
 }
 
-export const incrementAttribute = (attributeId, characterId) => {
+export const changeAttribute = (attributeId, change) => ({
+  type: constants.CHANGE_ATTRIBUTE,
+  attributeId,
+  change,
+  pips: false
+})
+
+export const changeAttributePips = (attributeId, change) => ({
+  type: constants.CHANGE_ATTRIBUTE,
+  attributeId,
+  change,
+  pips: true
+})
+
+export const incrementAttribute = (attributeId, characterId, dicePoints) => {
   return {
     type: constants.INCREMENT_ATTRIBUTE,
     attributeId: attributeId,
-    characterId: characterId
+    characterId: characterId,
+    dicePoints
   }
 }
 
-export const decrementAttribute = (attributeId, characterId) => {
+export const decrementAttribute = (attributeId, characterId, dicePoints) => {
   return {
     type: constants.DECREMENT_ATTRIBUTE,
     attributeId: attributeId,
-    characterId: characterId
+    characterId: characterId,
+    dicePoints
   }
 }
 
@@ -116,6 +132,11 @@ export const addSkill = (characterId, attributeId, skillNames) => {
   }
 }
 
+export const addSkillAtCreation  = (skill) => ({
+  skill,
+  type: constants.ADD_SKILL
+})
+
 export const decrementSkill = (skillId, characterId) => {
   return {
     type: constants.DECREMENT_SKILL,
@@ -140,15 +161,22 @@ export const exportToJSON = (characterId) => {
 }
 
 export const save = (character) => (dispatch) => {
+  console.log(character)
   return localforage.getItem('characters').then(characters => {
-    localforage.setItem('characters', [...characters, character]).catch((err) => console.error('Something went wrong', err))
-  })
+    console.log("saving", character)
+    localforage.setItem('characters', [...characters, character])
+  }).catch((err) => {
+    localforage.setItem('characters', [character])
+    console.error('Something went wrong', err)
+  }
+  )
 }
 
 export const load = () => (dispatch) => {
   return localforage.getItem('characters').then((characters) => {
       if (characters) {
-        dispatch(stateFromCache(characters))
+        let chars = characters.filter(char => (!!char))
+        dispatch(stateFromCache(chars))
       }
     })
 }

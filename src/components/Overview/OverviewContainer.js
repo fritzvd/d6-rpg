@@ -16,7 +16,6 @@ const getVisibleCharacters = (characters, filter) => {
 }
 
 const getCharacterIds = (characters) => {
-  console.log(characters)
   return characters.map((character) => character.id)
 }
 

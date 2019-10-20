@@ -17,7 +17,9 @@ const nameGen = new NameGenerator(2, lotr)
 export const characters = (state = [], action) => {
   switch(action.type) {
     case constants.ADD_CHARACTER:
-      return [...state, {...action.character}]
+      let highestId = state.map(char => char.id).sort((a, b) => a < b)
+      console.log(highestId)
+      return [...state, {...action.character, id: highestId++}]
     case constants.REMOVE_CHARACTER:
       return state.filter((character) => character.id !== action.id)
     case constants.INCREMENT_ATTRIBUTE:
@@ -57,8 +59,8 @@ export const characters = (state = [], action) => {
           break;
       }
       return state.map(mapFn)
-    case constants.ADD_SKILL:
-      return addSkill(state, action)
+    // case constants.ADD_SKILL:
+    //   return addSkill(state, action)
     case constants.CHANGE_NAME:
       return state.map((character) => 
       (action.characterId === character.id) ? {...character, name: action.name} : character)
@@ -94,10 +96,34 @@ const defaultCharacter = {
   name: nameGen.newName(),
 }
 
+const changeAttribute = (attributes, action) => {
+  return attributes.map(attribute => {
+    if (attribute.id === action.attributeId && !action.pips) {
+      const pips = attribute.dicePoints % 3
+      return {...attribute, dicePoints: Math.floor(action.change * 3) + pips }
+    } else if (attribute.id === action.attributeId && action.pips) {
+      let change = ((parseInt(action.change) >= 2) ? 2 : parseInt(action.change))
+      change = (isNaN(change) ? 0 : change)
+      return {...attribute, dicePoints: Math.floor(attribute.dicePoints /3 ) * 3 + change}
+    }
+    return attribute
+  })
+}
+
+const changeSkills = (skills, action) => {
+
+}
+
 export const activeCharacter = (state = defaultCharacter, action) => {
   switch(action.type) {
     case constants.SET_ACTIVE_CHARACTER:
       return action.character
+    case constants.ADD_SKILL:
+      return {...state, skills: state.skills.concat(action.skill)}
+    case constants.CHANGE_ATTRIBUTE:
+      return {...state, attributes: changeAttribute(state.attributes, action)}
+    case constants.CHANGE_SKILL:
+        return {...state, skills: changeSkills(state.skills, action)}
     case constants.CHANGE_NAME:
       return {...state, name: action.name}
     case constants.GEN_NAME:

@@ -8,6 +8,7 @@ import HighConcept from './HighConcept'
 import SelectGameType from './SelectGameType'
 import Attributes from './Attributes'
 import Skills from './Skills'
+import './AddCharacter.css'
 
 const AddCharacter = (props) => {
 

@@ -6,7 +6,7 @@ import calculateDice from '../../helpers/calculateDice'
 import formFieldFactory from '../UI/formFieldFactory'
 
 const SmallInput = styled.input`
-  width: 2em !important;
+  width: 3em !important;
 `
 
 const AdjustedHeight = styled.span`
@@ -41,7 +41,7 @@ export default function Attribute (props) {
           className="is-primary input"
           help="Change amount of full dice"
           value={Math.floor(props.attribute.dicePoints / 3)}
-          onChange={(e) => console.log(e.target.value)}/>
+          onChange={(e) => props.onChangeDice(e.target.value)}/>
         <AdjustedHeight>D +</AdjustedHeight>
         <SmallInput
           min={0}
@@ -51,7 +51,7 @@ export default function Attribute (props) {
           className="is-warning input"
           help="Change amount of pips"
           value={props.attribute.dicePoints % 3}
-          onChange={(e) => console.log(e.target.value)}/>
+          onChange={(e) => props.onChangePips(e.target.value)}/>
       </AttributeScore>
     </SpaceBetween>
   </Box>
