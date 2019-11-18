@@ -19,19 +19,61 @@ export const removeCharacter = (id) => (dispatch) => {
 
 }
 
-export const changeAttribute = (attributeId, change) => ({
+const calcDice = (attributes, attributeId, change) => {
+  return attributes.map(attribute => {
+    if (attribute.id === attributeId) {
+      const pips = attribute.dicePoints % 3
+      return {...attribute, dicePoints: Math.floor(change * 3) + pips }
+    }
+    return attribute
+  })
+}
+
+const calcPips = (attributes, attributeId, change) => {
+  return attributes.map(attribute => {
+    if (attribute.id === attributeId) {
+      let pipchange = ((parseInt(change) >= 2) ? 2 : parseInt(change))
+      pipchange = (isNaN(pipchange) ? 0 : pipchange)
+      return {...attribute, dicePoints: Math.floor(attribute.dicePoints /3 ) * 3 + pipchange}
+    }
+    return attribute
+  })
+}
+
+const calculateCreationPoints = (character, attributes) => {
+  let creationPoints = character.creationPoints
+  let oldDicePoints = character.attributes.reduce((prev, curr) => {
+    return prev + curr.dicePoints
+  }, 0)
+
+  let newDicePoints = attributes.reduce((prev, curr) => {
+    return prev + curr.dicePoints
+  }, 0)
+
+  creationPoints = creationPoints - (newDicePoints - oldDicePoints)
+
+  return creationPoints
+}
+
+export const changeAttribute = (character, attributeId, change) => dispatch => {
+  const attributes = calcDice(character.attributes, attributeId, change)
+  const creationPoints = calculateCreationPoints(character, attributes)
+  dispatch(changeAttributeAction(attributes, creationPoints))
+}
+
+export const changeAttributeAction = (attributes, creationPoints) => ({
   type: constants.CHANGE_ATTRIBUTE,
-  attributeId,
-  change,
-  pips: false
+  payload: {
+    attributes,
+    creationPoints
+  }
 })
 
-export const changeAttributePips = (attributeId, change) => ({
-  type: constants.CHANGE_ATTRIBUTE,
-  attributeId,
-  change,
-  pips: true
-})
+export const changeAttributePips = (character, attributeId, change) => dispatch => {
+  const attributes = calcPips(character.attributes, attributeId, change)
+  const creationPoints = calculateCreationPoints(character, attributes)
+  dispatch(changeAttributeAction(attributes, creationPoints))
+}
 
 export const incrementAttribute = (attributeId, characterId, dicePoints) => {
   return {

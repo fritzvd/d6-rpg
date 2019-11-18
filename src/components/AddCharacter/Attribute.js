@@ -1,9 +1,6 @@
 import React from 'react'
-import {Box, Heading} from 'react-bulma-components'
-import Input from '../UI/Input'
+import {Box} from 'react-bulma-components'
 import styled from 'styled-components'
-import calculateDice from '../../helpers/calculateDice'
-import formFieldFactory from '../UI/formFieldFactory'
 
 const SmallInput = styled.input`
   width: 3em !important;
@@ -29,13 +26,21 @@ const SpaceBetween = styled.div`
 `
 
 export default function Attribute (props) {
+  let minDice = 0
+  if (props.attribute.minimumDicePoints && !isNaN(props.attribute.minimumDicePoints)) {
+    Math.floor(props.attribute.minimumDicePoints / 3)
+  }
+  let maxDice = 0
+  if (props.attribute.maximumDicePoints && !isNaN(props.attribute.maximumDicePoints)) {
+    Math.floor(props.attribute.maximumDicePoints / 3)
+  }
   return <Box>
     <SpaceBetween>
       <AttributeTitle>{props.attribute.name}</AttributeTitle>
       <AttributeScore>
         <SmallInput
-          min={Math.floor(props.attribute.minimumDicePoints / 3)}
-          max={Math.floor(props.attribute.maximumDicePoints / 3)}
+          min={minDice}
+          max={maxDice}
           pattern="[0-9]*"
           type="number"
           className="is-primary input"

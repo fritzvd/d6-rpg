@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { uniqWith } from 'lodash'
 import * as constants from '../helpers/constants'
 
 import incrementAttribute from './incrementAttribute'
@@ -57,6 +58,8 @@ export const characters = (state = [], action) => {
             return character
           }
           break;
+        default:
+          break
       }
       return state.map(mapFn)
     // case constants.ADD_SKILL:
@@ -96,19 +99,6 @@ const defaultCharacter = {
   name: nameGen.newName(),
 }
 
-const changeAttribute = (attributes, action) => {
-  return attributes.map(attribute => {
-    if (attribute.id === action.attributeId && !action.pips) {
-      const pips = attribute.dicePoints % 3
-      return {...attribute, dicePoints: Math.floor(action.change * 3) + pips }
-    } else if (attribute.id === action.attributeId && action.pips) {
-      let change = ((parseInt(action.change) >= 2) ? 2 : parseInt(action.change))
-      change = (isNaN(change) ? 0 : change)
-      return {...attribute, dicePoints: Math.floor(attribute.dicePoints /3 ) * 3 + change}
-    }
-    return attribute
-  })
-}
 
 const changeSkills = (skills, action) => {
 
@@ -119,9 +109,10 @@ export const activeCharacter = (state = defaultCharacter, action) => {
     case constants.SET_ACTIVE_CHARACTER:
       return action.character
     case constants.ADD_SKILL:
-      return {...state, skills: state.skills.concat(action.skill)}
+      const skills = uniqWith(state.skills.concat(addSkill(state, action)), (s1, s2) => s1.name === s2.name)
+      return {...state, skills: skills, skillIds: skills.map(skill => skill.id)}
     case constants.CHANGE_ATTRIBUTE:
-      return {...state, attributes: changeAttribute(state.attributes, action)}
+      return {...state, attributes: action.payload.attributes, creationPoints: action.payload.creationPoints }
     case constants.CHANGE_SKILL:
         return {...state, skills: changeSkills(state.skills, action)}
     case constants.CHANGE_NAME:

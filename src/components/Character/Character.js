@@ -23,9 +23,9 @@ const Character = ({character, json}) => {
     <div className="cf ph2-ns">
       <div className="fl w-100 pa2">
         <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-         href={json(character.id)} target="_blank"> Export To JSON </a>
-        <a className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
-         onClick={() => dispatch(save(character))}>Save Character</a>
+         href={json(character.id)} target="_blank" rel="noopener noreferrer"> Export To JSON </a>
+        <button type="button" className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6"
+         onClick={() => dispatch(save(character))}>Save Character</button>
          {/* // import from json with filreader? */}
       </div>
       <div className="right-top" onClick={()=> dispatch(removeCharacter(character.id, dispatch))}>x</div>
@@ -58,8 +58,8 @@ const Character = ({character, json}) => {
       </div>
       {<div className="mw9 clearit">
         <div className="w-50 pa2">
-         <a className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{dispatch(buyDie(character.id, ATTRIBUTE_DIE))}}>Buy Attribute Die</a>
-         <a className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{dispatch(buyDie(character.id, SKILL_DIE))}}>Buy Skill Die</a>
+         <button type="button" className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{dispatch(buyDie(character.id, ATTRIBUTE_DIE))}}>Buy Attribute Die</button>
+         <button type="button" className="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" onClick={()=>{dispatch(buyDie(character.id, SKILL_DIE))}}>Buy Skill Die</button>
         </div>
         <div className="w-50">
         Creation points: {character.creationPoints }

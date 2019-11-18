@@ -4,6 +4,7 @@ import { Button } from 'react-bulma-components'
 import Icon from '../UI/Icon'
 import Attribute from './Attribute'
 import { changeAttribute, changeAttributePips } from '../../actions'
+
 function Attributes (props) {
   return <>
     <Button color="info" onClick={() => props.history.push('/character-creation/details')}>
@@ -11,7 +12,7 @@ function Attributes (props) {
     </Button>
     {props.character.attributes.map(attr => <Attribute attribute={attr} 
     key={attr.id}
-    onChangeDice={val => props.changeAttribute(attr.id, val)} onChangePips={val => props.changeAttributePips(attr.id, val)}/>)}
+    onChangeDice={val => props.changeAttribute(props.character, attr.id, val)} onChangePips={val => props.changeAttributePips(props.character, attr.id, val)}/>)}
 
 
     <Button color="info" onClick={() => props.history.push('/character-creation/skills')}>
@@ -27,8 +28,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeAttribute: (attributeId, change) => dispatch(changeAttribute(attributeId, change)),
-  changeAttributePips: (attributeId, change) => dispatch(changeAttributePips(attributeId, change))
+  changeAttribute: (character, attributeId, change) => dispatch(changeAttribute(character, attributeId, change)),
+  changeAttributePips: (character, attributeId, change) => dispatch(changeAttributePips(character, attributeId, change))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Attributes)
