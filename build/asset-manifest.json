@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/d6-rpg/static/css/main.7fd9487e.chunk.css",
-    "main.js": "/d6-rpg/static/js/main.3210d35b.chunk.js",
-    "main.js.map": "/d6-rpg/static/js/main.3210d35b.chunk.js.map",
+    "main.css": "/d6-rpg/static/css/main.b0adb9dd.chunk.css",
+    "main.js": "/d6-rpg/static/js/main.73159230.chunk.js",
+    "main.js.map": "/d6-rpg/static/js/main.73159230.chunk.js.map",
     "runtime-main.js": "/d6-rpg/static/js/runtime-main.1745ac57.js",
     "runtime-main.js.map": "/d6-rpg/static/js/runtime-main.1745ac57.js.map",
     "static/css/2.46f0bf41.chunk.css": "/d6-rpg/static/css/2.46f0bf41.chunk.css",
-    "static/js/2.2db5961a.chunk.js": "/d6-rpg/static/js/2.2db5961a.chunk.js",
-    "static/js/2.2db5961a.chunk.js.map": "/d6-rpg/static/js/2.2db5961a.chunk.js.map",
+    "static/js/2.9b2b3966.chunk.js": "/d6-rpg/static/js/2.9b2b3966.chunk.js",
+    "static/js/2.9b2b3966.chunk.js.map": "/d6-rpg/static/js/2.9b2b3966.chunk.js.map",
     "index.html": "/d6-rpg/index.html",
-    "precache-manifest.9405b15bc9c7cbe8289d7ce750241ed4.js": "/d6-rpg/precache-manifest.9405b15bc9c7cbe8289d7ce750241ed4.js",
+    "precache-manifest.71b41c2794bbca93a01c224066f77995.js": "/d6-rpg/precache-manifest.71b41c2794bbca93a01c224066f77995.js",
     "service-worker.js": "/d6-rpg/service-worker.js",
     "static/css/2.46f0bf41.chunk.css.map": "/d6-rpg/static/css/2.46f0bf41.chunk.css.map",
-    "static/css/main.7fd9487e.chunk.css.map": "/d6-rpg/static/css/main.7fd9487e.chunk.css.map"
+    "static/css/main.b0adb9dd.chunk.css.map": "/d6-rpg/static/css/main.b0adb9dd.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.1745ac57.js",
     "static/css/2.46f0bf41.chunk.css",
-    "static/js/2.2db5961a.chunk.js",
-    "static/css/main.7fd9487e.chunk.css",
-    "static/js/main.3210d35b.chunk.js"
+    "static/js/2.9b2b3966.chunk.js",
+    "static/css/main.b0adb9dd.chunk.css",
+    "static/js/main.73159230.chunk.js"
   ]
 }
