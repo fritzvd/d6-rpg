@@ -1,0 +1,16 @@
+p, h2 {
+  border-bottom: 1px gray solid;
+}
+
+.box > p {
+  font-style: italic;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+}
+
+.dice-type {
+  display: flex;
+  justify-content: space-between;
+}
