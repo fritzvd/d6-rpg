@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import OverviewContainer from '../Overview/OverviewContainer'
 import AddCharacter from '../AddCharacter/AddCharacter'
 import CharacterContainer from '../Character/CharacterContainer'
+import Character from '../Character'
 
 import Menu from '../Menu/Menu'
 
@@ -37,7 +38,7 @@ const App = () => {
       <Menu />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/character/:id" component={CharacterContainer} />
+        <Route path="/character/:id" render={(props) => <Character characterId={props.match.params.id}/>} />
         <Route path="/character-creation" component={AddCharacter} />
       </Switch>
 

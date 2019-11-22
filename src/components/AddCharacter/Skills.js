@@ -28,7 +28,17 @@ function Skills (props) {
       <Icon iconName="arrow-left"/><span>Back</span>
     </Button>
 
-    {props.character.skills.sort((s1, s2) => s1.attributeId - s2.attributeId).map(skill => <Attribute key={skill.id} attribute={{...skill, dicePoints: skill.dicePoints + props.character.attributes.find(attr => attr.id === skill.id).dicePoints}}/>)}
+    {props.character.skills
+      .sort((s1, s2) => s1.name - s2.name)
+      .map(skill => <Attribute
+        key={skill.id}
+        attribute={{
+          ...skill,
+          dicePoints: skill.dicePoints + props.character.attributes.find(attr => attr.id === skill.id).dicePoints
+          }}
+          onChangeDice={(value) => props.changeSkill()}
+          onChangePips={() => console.log}
+        />)}
     <Input
       value={query}
       placeholder="Search for skills..."

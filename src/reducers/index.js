@@ -19,7 +19,6 @@ export const characters = (state = [], action) => {
   switch(action.type) {
     case constants.ADD_CHARACTER:
       let highestId = state.map(char => char.id).sort((a, b) => a < b)
-      console.log(highestId)
       return [...state, {...action.character, id: highestId++}]
     case constants.REMOVE_CHARACTER:
       return state.filter((character) => character.id !== action.id)
@@ -99,11 +98,6 @@ const defaultCharacter = {
   name: nameGen.newName(),
 }
 
-
-const changeSkills = (skills, action) => {
-
-}
-
 export const activeCharacter = (state = defaultCharacter, action) => {
   switch(action.type) {
     case constants.SET_ACTIVE_CHARACTER:
@@ -112,9 +106,11 @@ export const activeCharacter = (state = defaultCharacter, action) => {
       const skills = uniqWith(state.skills.concat(addSkill(state, action)), (s1, s2) => s1.name === s2.name)
       return {...state, skills: skills, skillIds: skills.map(skill => skill.id)}
     case constants.CHANGE_ATTRIBUTE:
-      return {...state, attributes: action.payload.attributes, creationPoints: action.payload.creationPoints }
+      return {...state, attributes: action.payload.attributes,
+        creationPoints: action.payload.creationPoints }
     case constants.CHANGE_SKILL:
-        return {...state, skills: changeSkills(state.skills, action)}
+        return {...state, skills: action.payload.skills,
+          creationPoints: action.payload.creationPoints }
     case constants.CHANGE_NAME:
       return {...state, name: action.name}
     case constants.GEN_NAME:

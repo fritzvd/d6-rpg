@@ -203,10 +203,11 @@ export const exportToJSON = (characterId) => {
 }
 
 export const save = (character) => (dispatch) => {
-  console.log(character)
   return localforage.getItem('characters').then(characters => {
-    console.log("saving", character)
-    localforage.setItem('characters', [...characters, character])
+    let highestId = characters.map(char => char.id).sort((a, b) => a > b).pop()
+    console.log(highestId, ++highestId)
+    localforage.setItem('characters', [...characters, {...character, id: ++highestId}])
+    dispatch(load())
   }).catch((err) => {
     localforage.setItem('characters', [character])
     console.error('Something went wrong', err)

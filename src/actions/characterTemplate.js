@@ -31,9 +31,10 @@ const occupations = [
 
 export const genOccupation = () => random(occupations)
 
-
+let id = 0
 const createCharacterTemplate = (type) => {
   let character = {
+    id: id++,
     ...characterTemplate,
     creationPoints: characterTemplate.creationPoints - (attributeTypes[type].attributes.length * 4),
     age: Math.floor(Math.random() * 50) + 10,

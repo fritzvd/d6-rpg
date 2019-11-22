@@ -9,8 +9,9 @@ import Select from '../UI/Select'
 
 function SelectGameType (props) {
   return <>
-    <Select label="Choose game type"
-      default={props.gameTypes[0].name}
+    <span>Current game: {props.gameType}</span>
+    <Select label="Change game type"
+      blankDefault
       options={props.gameTypes} onChange={(e) => {
       props.changeGameType(e.target.value)
       }} />
@@ -23,6 +24,7 @@ const getGameTypes = () => {
 }
 
 const mapStateToProps = (state) => ({
+  gameType: state.gameType,
   gameTypes: getGameTypes(),
 })
 
